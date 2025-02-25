@@ -1,0 +1,220 @@
+[gd_scene load_steps=13 format=3 uid="uid://3bwj1masv83h"]
+
+[ext_resource type="Texture2D" uid="uid://c4fo43rikhyel" path="res://sprites/hexagon_pattern.png" id="1_arxi8"]
+[ext_resource type="Texture2D" uid="uid://btdgu4wkfscoo" path="res://sprites/border_top.png" id="2_js4j3"]
+[ext_resource type="Texture2D" uid="uid://b6b7fx5cvqfcg" path="res://sprites/border_right.png" id="3_dff8r"]
+[ext_resource type="Texture2D" uid="uid://cfaswba2afcbx" path="res://sprites/border_left.png" id="4_bqien"]
+[ext_resource type="Script" path="res://jugador.gd" id="5_h8ic3"]
+[ext_resource type="Texture2D" uid="uid://cid4jtwit6qs6" path="res://sprites/racket.png" id="5_kbmrt"]
+[ext_resource type="Script" path="res://pilota.gd" id="7_qtxu7"]
+[ext_resource type="Texture2D" uid="uid://b7w2ub8tasut4" path="res://sprites/ball.png" id="8_yo5kq"]
+[ext_resource type="PackedScene" uid="uid://cplvnfk43cda4" path="res://bloc_blau.tscn" id="9_b6x18"]
+[ext_resource type="PackedScene" uid="uid://dirrxj5kixybo" path="res://bloc_groc.tscn" id="10_jslby"]
+[ext_resource type="PackedScene" uid="uid://i48rwecaxqi3" path="res://bloc_verd.tscn" id="11_xmy33"]
+[ext_resource type="PackedScene" uid="uid://poa41kv5ffg3" path="res://bloc_roig.tscn" id="12_b0qg6"]
+
+[node name="main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(112, 128)
+ignore_rotation = false
+zoom = Vector2(2, 2)
+
+[node name="Nivell" type="Node2D" parent="."]
+
+[node name="Fons" type="Sprite2D" parent="Nivell"]
+position = Vector2(107, 119)
+texture = ExtResource("1_arxi8")
+
+[node name="BorderTop" type="Sprite2D" parent="Nivell"]
+position = Vector2(107, 2)
+texture = ExtResource("2_js4j3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Nivell/BorderTop"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Nivell/BorderTop/StaticBody2D"]
+polygon = PackedVector2Array(-110, 3.5, -110, -3.5, 110, -3.5, 110, 3.5)
+
+[node name="BorderRight" type="Sprite2D" parent="Nivell"]
+position = Vector2(1, 120)
+texture = ExtResource("3_dff8r")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Nivell/BorderRight"]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Nivell/BorderRight/StaticBody2D"]
+polygon = PackedVector2Array(-3, 115, -3, -115, 3, -115, 3, 115)
+
+[node name="BorderLeft" type="Sprite2D" parent="Nivell"]
+position = Vector2(214, 119)
+texture = ExtResource("4_bqien")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Nivell/BorderLeft"]
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Nivell/BorderLeft/StaticBody2D"]
+polygon = PackedVector2Array(-3, 115, -3, -115, 3, -115, 3, 115)
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(112, 219)
+script = ExtResource("5_h8ic3")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Jugador"]
+texture = ExtResource("5_kbmrt")
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Jugador"]
+polygon = PackedVector2Array(16.5, 5, 16.5, -5, -16.5, -5, -16.5, 5)
+
+[node name="Pilota" type="CharacterBody2D" parent="."]
+position = Vector2(112, 200)
+script = ExtResource("7_qtxu7")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Pilota"]
+texture = ExtResource("8_yo5kq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pilota"]
+polygon = PackedVector2Array(-3, 2.5, -3, -2.5, 3, -2.5, 3, 2.5)
+
+[node name="Blocs" type="Node" parent="."]
+
+[node name="BlocBlau" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(13, 15)
+
+[node name="BlocGroc" parent="Blocs" instance=ExtResource("10_jslby")]
+
+[node name="BlocVerd" parent="Blocs" instance=ExtResource("11_xmy33")]
+
+[node name="BlocRoig" parent="Blocs" instance=ExtResource("12_b0qg6")]
+
+[node name="BlocBlau2" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(29, 15)
+
+[node name="BlocGroc2" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(29, 24)
+
+[node name="BlocVerd2" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(29, 32)
+
+[node name="BlocRoig2" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(29, 40)
+
+[node name="BlocBlau3" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(45, 15)
+
+[node name="BlocGroc3" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(45, 24)
+
+[node name="BlocVerd3" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(45, 32)
+
+[node name="BlocRoig3" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(45, 40)
+
+[node name="BlocBlau4" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(62, 15)
+
+[node name="BlocGroc4" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(62, 24)
+
+[node name="BlocVerd4" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(62, 32)
+
+[node name="BlocRoig4" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(62, 40)
+
+[node name="BlocBlau5" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(78, 15)
+
+[node name="BlocGroc5" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(78, 24)
+
+[node name="BlocVerd5" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(78, 32)
+
+[node name="BlocRoig5" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(78, 40)
+
+[node name="BlocBlau6" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(95, 15)
+
+[node name="BlocGroc6" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(95, 24)
+
+[node name="BlocVerd6" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(95, 32)
+
+[node name="BlocRoig6" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(95, 40)
+
+[node name="BlocBlau7" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(113, 15)
+
+[node name="BlocGroc7" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(113, 24)
+
+[node name="BlocVerd7" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(113, 32)
+
+[node name="BlocRoig7" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(113, 40)
+
+[node name="BlocBlau8" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(131, 15)
+
+[node name="BlocGroc8" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(131, 24)
+
+[node name="BlocVerd8" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(131, 32)
+
+[node name="BlocRoig8" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(131, 40)
+
+[node name="BlocBlau9" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(149, 15)
+
+[node name="BlocGroc9" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(149, 24)
+
+[node name="BlocVerd9" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(149, 32)
+
+[node name="BlocRoig9" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(149, 40)
+
+[node name="BlocBlau10" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(167, 15)
+
+[node name="BlocGroc10" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(167, 24)
+
+[node name="BlocVerd10" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(167, 32)
+
+[node name="BlocRoig10" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(167, 40)
+
+[node name="BlocBlau11" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(184, 15)
+
+[node name="BlocGroc11" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(184, 24)
+
+[node name="BlocVerd11" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(184, 32)
+
+[node name="BlocRoig11" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(184, 40)
+
+[node name="BlocBlau12" parent="Blocs" instance=ExtResource("9_b6x18")]
+position = Vector2(201, 15)
+
+[node name="BlocGroc12" parent="Blocs" instance=ExtResource("10_jslby")]
+position = Vector2(201, 24)
+
+[node name="BlocVerd12" parent="Blocs" instance=ExtResource("11_xmy33")]
+position = Vector2(201, 32)
+
+[node name="BlocRoig12" parent="Blocs" instance=ExtResource("12_b0qg6")]
+position = Vector2(201, 40)
